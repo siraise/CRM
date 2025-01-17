@@ -60,7 +60,7 @@
                         <td>88005553535</td>
                         <td>30.10.0004</td>
                         <td>15.01.2025</td>
-                        <td><i class="fa fa-history" aria-hidden="true"></i></td>
+                        <td><i  onclick="MicroModal.show('histori-modal')" class="fa fa-history" aria-hidden="true"></i></td>
                         <td><i onclick="MicroModal.show('edit-modal')" class="fa fa-pencil-square-o" aria-hidden="true"></i></td>
                         <td><i  onclick="MicroModal.show('delete-modal')" class="fa fa-trash" aria-hidden="true"></i></td>  
                     </tr>
@@ -485,6 +485,71 @@
                             <button type="button" class="btn btn-secondary" data-micromodal-close>Отменить</button>
                         </div>
                     </form>
+                </main>
+            </div>
+        </div>
+    </div>
+    <!-- histori -->
+    <div class="modal micromodal-slide" id="histori-modal" aria-hidden="true">
+        <div class="modal__overlay" tabindex="-1" data-micromodal-close>
+            <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
+                <header class="modal__header">
+                    <h2 class="modal__title" id="modal-1-title">
+                        История заказов
+                    </h2>
+                    <small>Айтуганов Данияр Аманович</small>
+                    <button class="modal__close" aria-label="Close modal" data-micromodal-close></button>
+                </header>
+                <main class="modal__content" id="modal-1-content">
+                   <div class="order">
+                    <div class="order_info">
+                        <h3 class="order_number">
+                           <b>Заказ №1</b> 
+                        </h3>
+                        <time datetime="order_date">
+                            Дата оформления: 10.01.2025
+                        </time>
+                        <p class="order_total">Общая сумма:10000р</p>
+                    </div>
+                    <table class="order_items">
+                        <tr>
+                           <th>ИД</th>
+                           <th>Название товара</th>
+                           <th>Количество</th>
+                           <th>Цена</th>
+                       </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>Футболка</td>
+                            <td>10</td>
+                            <td>1000</td>
+                       </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>Футболка</td>
+                            <td>10</td>
+                            <td>1000</td>
+                       </tr>
+                       <tr>
+                        <td>1</td>
+                        <td>Футболка</td>
+                        <td>10</td>
+                        <td>1000</td>
+                   </tr>
+                   <tr>
+                    <td>1</td>
+                    <td>Футболка</td>
+                    <td>10</td>
+                    <td>1000</td>
+               </tr>
+               <tr>
+                <td>1</td>
+                <td>Футболка</td>
+                <td>10</td>
+                <td>1000</td>
+           </tr>
+                    </table>
+                   </div>
                 </main>
             </div>
         </div>
