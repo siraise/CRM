@@ -1,3 +1,8 @@
+<?php
+session_start();
+require_once 'modules/AuthCheck.php';
+AuthCheck('', 'login.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +11,7 @@
     <title>CRM | Товары</title>
     <link rel="stylesheet" href="styles/modules/font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="styles/settings.css">
-    <link rel="stylesheet" href="styles/pages/clients.css">
+    <link rel="stylesheet" href="styles/pages/producs.css">
     <link rel="stylesheet" href="styles/modules/micromodal.css">
 </head>
 <body>

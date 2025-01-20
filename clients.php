@@ -1,3 +1,8 @@
+<?php
+session_start();
+require_once 'modules/AuthCheck.php';
+AuthCheck('', 'login.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,7 +42,7 @@
         <section class="clients">
             <h2 class="clients__title">Список клиентов</h2>
             <button onclick="MicroModal.show('add-modal')" class="clients__add">
-                <i class="fa fa-user-plus fa-2x" aria-hidden="true"></i>
+                <i class="fa fa-user-plus fa-3x" aria-hidden="true"></i>
             </button>
             <div class="container">
                 <table>
