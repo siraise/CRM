@@ -1,7 +1,6 @@
 <?php
- $_SESSION['token'] = '123456789';
 function AuthCheck($successPath  = '', $errorPath  = '') {
-    require_once 'db.php';
+    require_once 'api/db.php';
     if (!isset($_SESSION['token']) && $errorPath) {
         header("Location: $errorPath");
         return; 
