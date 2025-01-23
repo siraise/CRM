@@ -1,8 +1,11 @@
 <?php
 function AuthCheck($successPath  = '', $errorPath  = '') {
     require_once 'api/db.php';
-    if (!isset($_SESSION['token']) && $errorPath) {
-        header("Location: $errorPath");
+    require_once 'LogoutUser.php';
+    if (!isset($_SESSION['token'])) {
+        if($errorPath){
+            header("Location: $errorPath");
+        }
         return; 
     }
     // токен текущего пользователя
@@ -16,6 +19,7 @@ function AuthCheck($successPath  = '', $errorPath  = '') {
         "SELECT id FROM users WHERE token = '$token'"
     )->fetchAll();
      if(empty($adminID) && $errorPath){
+        LogoutUser( $errorPath,$db);
         header("Location: $errorPath");
          return;
      }
