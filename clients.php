@@ -34,8 +34,8 @@ AuthCheck('', 'login.php');
             </p>
             <ul class="header__links">
                 <li><a href="">Клиент</a></li>
-                <li><a href="">Товары</a></li>
-                <li><a href="">Заказы</a></li>
+                <li><a href="./producs.php">Товары</a></li>
+                <li><a href="./orders.php">Заказы</a></li>
             </ul>
             <a  class="header__logout" href="?do=logout">Выйти</a>
         </div>

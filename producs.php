@@ -33,9 +33,9 @@ AuthCheck('', 'login.php');
             ?>
             </p>
             <ul class="header__links">
-                <li><a href="">Клиент</a></li>
+                <li><a href="./clients.php">Клиент</a></li>
                 <li><a href="">Товары</a></li>
-                <li><a href="">Заказы</a></li>
+                <li><a href="./orders.php">Заказы</a></li>
             </ul>
             <a class="header__logout" href="?do=logout">Выйти</a>
         </div>
@@ -64,7 +64,7 @@ AuthCheck('', 'login.php');
         <section class="clients">
             <h2 class="clients__title">Список товаров</h2>
             <button onclick="MicroModal.show('add-modal')" class="clients__add">
-                <i class="fa fa-user-plus fa-2x" aria-hidden="true"></i>
+                <i class="fa fa-plus-square" aria-hidden="true"></i>
             </button>
             <div class="container">
                 <table>
@@ -719,4 +719,4 @@ AuthCheck('', 'login.php');
     <script defer src="https://unpkg.com/micromodal/dist/micromodal.min.js"></script>
     <script defer src="scripts/initClientsModal.js"></script>
 </body>
-</html>ы
+</html>

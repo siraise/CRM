@@ -15,7 +15,7 @@ AuthCheck('', 'login.php');
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CRM | Товары</title>
+    <title>CRM | Заказы</title>
     <link rel="stylesheet" href="styles/modules/font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="styles/settings.css">
     <link rel="stylesheet" href="styles/pages/producs.css">
@@ -33,8 +33,8 @@ AuthCheck('', 'login.php');
             ?>
             </p>
             <ul class="header__links">
-                <li><a href="">Клиент</a></li>
-                <li><a href="">Товары</a></li>
+                <li><a href="./clients.php">Клиент</a></li>
+                <li><a href="./producs.php">Товары</a></li>
                 <li><a href="">Заказы</a></li>
             </ul>
             <a class="header__logout" href="?do=logout">Выйти</a>
@@ -65,7 +65,7 @@ AuthCheck('', 'login.php');
         <section class="clients">
             <h2 class="clients__title">Список товаров</h2>
             <button onclick="MicroModal.show('add-modal')" class="clients__add">
-                <i class="fa fa-user-plus fa-2x" aria-hidden="true"></i>
+                <i class="fa fa-plus-square" aria-hidden="true"></i>
             </button>
             <div class="container">
                 <table>
@@ -108,7 +108,7 @@ AuthCheck('', 'login.php');
         <div class="modal__overlay" tabindex="-1" data-micromodal-close>
             <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
                 <header class="modal__header">
-                    <h2 class="modal__title" id="modal-1-title">Добавить товар</h2>
+                    <h2 class="modal__title" id="modal-1-title">Добавить заказ</h2>
                     <button class="modal__close" aria-label="Close modal" data-micromodal-close></button>
                 </header>
                 <main class="modal__content" id="modal-1-content">
@@ -251,4 +251,4 @@ AuthCheck('', 'login.php');
     <script defer src="https://unpkg.com/micromodal/dist/micromodal.min.js"></script>
     <script defer src="scripts/initClientsModal.js"></script>
 </body>
-</html>ы
+</html>
