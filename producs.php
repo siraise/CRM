@@ -1,6 +1,13 @@
 <?php
 session_start();
-require_once 'modules/AuthCheck.php';
+if(isset($_GET['do']) && $_GET['do'] === 'logout'){
+    require_once 'api/auth/LogoutUser.php';
+    require_once 'api/db.php';
+
+    LogoutUser('login.php',$db,$_SESSION['token']);
+}
+
+require_once 'api/auth/AuthCheck.php';
 AuthCheck('', 'login.php');
 ?>
 <!DOCTYPE html>
@@ -15,15 +22,22 @@ AuthCheck('', 'login.php');
     <link rel="stylesheet" href="styles/modules/micromodal.css">
 </head>
 <body>
-    <header class="header">
+<header class="header">
         <div class="container">
-            <p class="header__admin">Фамилия И.О.</p>
+        <p class="header__admin">
+            <?php
+              require'api/db.php';
+              require_once'api/clients/AdminName.php';
+
+              echo AdminName($_SESSION['token'],$db);
+            ?>
+            </p>
             <ul class="header__links">
                 <li><a href="">Клиент</a></li>
                 <li><a href="">Товары</a></li>
                 <li><a href="">Заказы</a></li>
             </ul>
-            <a class="header__logout" href="">Выйти</a>
+            <a class="header__logout" href="?do=logout">Выйти</a>
         </div>
     </header>
     <main>
