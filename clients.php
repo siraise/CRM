@@ -43,13 +43,16 @@ AuthCheck('', 'login.php');
     <main>
         <section class="filters">
             <div class="container">
-                <form action="">
+                <form action="" method ="GET">
                     <label for="search">Поск по имени</label>
                     <input type="text" id="search" name="search" placeholder="Даниря">
                     <select name="sort" id="sort">
-                        <option value="0">По возрастанию</option>
-                        <option value="1">По убыванию</option>
+                    <option value="">Поумолчанию</option>
+                    <option value="ASC">По возрастанию</option>
+                    <option value="DESC">По убыванию</option>
                     </select>
+                    <button type="submit">Поиск</button>
+                   <button type = "submit" style = "margin-top:20px;"><a href="?" style = "color:white;">Сбросить</a></button> 
                 </form>
             </div>
         </section>
@@ -75,9 +78,8 @@ AuthCheck('', 'login.php');
                     <?php
                     require'api/db.php';
                     require_once('api/clients/OutputClients.php');
-                    $clients = $db -> query(
-                        "SELECT *FROM clients"
-                    ) ->fetchAll();
+                    require_once('api/clients/ClientsSearch.php');
+                     $clients = ClientsSearch($_GET,$db);
                     OutputClients($clients);
                     ?>
                 </tbody>
@@ -97,22 +99,22 @@ AuthCheck('', 'login.php');
                 </header>
                 <main class="modal__content" id="modal-1-content">
                     <!-- Форма добавления клиента -->
-                    <form id="add-client-form">
+                    <form action ="api/clients/AddClients.php" method="POST" id="add-client-form">
                         <div class="form-group">
                             <label for="full-name">ФИО:</label>
-                            <input type="text" id="full-name" name="full-name" required placeholder="Введите ФИО">
+                            <input type="text" id="full-name" name="full-name"  placeholder="Введите ФИО">
                         </div>
                         <div class="form-group">
                             <label for="email">Почта:</label>
-                            <input type="email" id="email" name="email" required placeholder="Введите почту">
+                            <input type="email" id="email" name="email" placeholder="Введите почту">
                         </div>
                         <div class="form-group">
                             <label for="phone">Телефон:</label>
-                            <input type="tel" id="phone" name="phone" required placeholder="Введите телефон">
+                            <input type="tel" id="phone" name="phone"  placeholder="Введите телефон">
                         </div>
                         <div class="form-group">
                             <label for="birthday">День рождения:</label>
-                            <input type="date" id="birthday" name="birthday" required>
+                            <input type="date" id="birthday" name="birthday">
                         </div>
                         <div class="form-actions">
                             <button type="submit" class="btn btn-primary">Добавить</button>
@@ -156,15 +158,15 @@ AuthCheck('', 'login.php');
                     <form id="add-client-form">
                         <div class="form-group">
                             <label for="full-name">ФИО:</label>
-                            <input type="text" id="full-name" name="full-name" required placeholder="Введите ФИО">
+                            <input type="text" id="full-name" name="full-name"  placeholder="Введите ФИО">
                         </div>
                         <div class="form-group">
                             <label for="email">Почта:</label>
-                            <input type="email" id="email" name="email" required placeholder="Введите почту">
+                            <input type="email" id="email" name="email"  placeholder="Введите почту">
                         </div>
                         <div class="form-group">
                             <label for="phone">Телефон:</label>
-                            <input type="tel" id="phone" name="phone" required placeholder="Введите телефон">
+                            <input type="tel" id="phone" name="phone"  placeholder="Введите телефон">
                         </div>
                         <div class="form-actions">
                             <button type="submit" class="btn btn-primary">Редактировать</button>
@@ -175,6 +177,23 @@ AuthCheck('', 'login.php');
             </div>
         </div>
     </div>
+    <!-- error -->
+    <div class="modal micromodal-slide open" id="error-modal" aria-hidden="true">
+        <div class="modal__overlay" tabindex="-1" data-micromodal-close>
+            <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
+                <header class="modal__header">
+                    <h2 class="modal__title" id="modal-1-title">
+                        ОШИБКА
+                    </h2>
+                    <button class="modal__close" aria-label="Close modal" data-micromodal-close></button>
+                </header>
+                <main class="modal__content" id="modal-1-content">
+                  <p>ТЕКСТ ОШИБКИ</p>
+                </main>
+            </div>
+        </div>
+    </div>
+     <!--  -->
     <!-- histori -->
     <div class="modal micromodal-slide" id="histori-modal" aria-hidden="true">
         <div class="modal__overlay" tabindex="-1" data-micromodal-close>
