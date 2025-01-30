@@ -25,7 +25,7 @@ if(!$login || !$password){
 // функция для фильтрации данных
 function clearData($input){
    $cleaned = strip_tags($input);
-   $cleaned = trim($input);
+   $cleaned = trim($cleaned);
    $cleaned = preg_replace('/\s+/','',$cleaned);
    return $cleaned;
 
