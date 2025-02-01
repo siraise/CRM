@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Янв 13 2025 г., 05:00
+-- Время создания: Янв 13 2025 г., 04:59
 -- Версия сервера: 10.4.32-MariaDB
 -- Версия PHP: 8.2.12
 
@@ -41,11 +41,8 @@ CREATE TABLE `clients` (
 --
 
 INSERT INTO `clients` (`id`, `name`, `email`, `phone`, `birthday`, `created_at`) VALUES
-(1, 'Иван Иванов', 'ivanov@example.com', '+79991234567', '1985-05-15', '2025-01-13 03:05:29'),
-(2, 'Мария Петрова', 'petrova@example.com', '+79991234568', '1990-08-20', '2025-01-13 03:05:29'),
-(3, 'Сергей Сидоров', 'sidorov@example.com', '+79991234569', '1988-12-30', '2025-01-13 03:05:29'),
-(4, 'Ольга Смирнова', 'smirnova@example.com', '+79991234570', '1995-03-10', '2025-01-13 03:05:29'),
-(5, 'Алексей Кузнецов', 'kuznetsov@example.com', '+79991234571', '1982-07-25', '2025-01-13 03:05:29');
+(1, 'John Doe', 'john@example.com', '+1234567890', '1985-05-15', '2025-01-13 02:59:15'),
+(2, 'Jane Smith', 'jane@example.com', '+0987654321', '1990-10-20', '2025-01-13 02:59:15');
 
 -- --------------------------------------------------------
 
@@ -58,7 +55,7 @@ CREATE TABLE `orders` (
   `client_id` int(11) NOT NULL,
   `order_date` timestamp NOT NULL DEFAULT current_timestamp(),
   `total` decimal(10,2) DEFAULT NULL,
-  `status` enum('pending','completed','canceled') DEFAULT 'pending'
+  `status` enum('pending','completed','cancelled') DEFAULT 'pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -66,11 +63,8 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `client_id`, `order_date`, `total`, `status`) VALUES
-(1, 1, '2025-01-13 03:06:11', 59999.99, 'completed'),
-(2, 2, '2025-01-13 03:06:11', 79999.99, 'pending'),
-(3, 3, '2025-01-13 03:06:11', 24999.99, 'completed'),
-(4, 4, '2025-01-13 03:06:11', 34999.99, 'canceled'),
-(5, 5, '2025-01-13 03:06:11', 8999.99, 'pending');
+(1, 1, '2025-01-13 03:04:47', 59.97, 'completed'),
+(2, 2, '2025-01-13 03:04:47', 29.99, 'pending');
 
 -- --------------------------------------------------------
 
@@ -91,11 +85,9 @@ CREATE TABLE `order_items` (
 --
 
 INSERT INTO `order_items` (`id`, `order_id`, `product_id`, `quantity`, `price`) VALUES
-(1, 1, 1, 1, 59999.99),
-(2, 2, 2, 1, 79999.99),
-(3, 3, 3, 2, 24999.99),
-(4, 4, 4, 1, 34999.99),
-(5, 5, 5, 1, 8999.99);
+(1, 1, 1, 2, 19.99),
+(2, 1, 2, 1, 29.99),
+(3, 2, 2, 1, 29.99);
 
 -- --------------------------------------------------------
 
@@ -116,11 +108,9 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `name`, `desc`, `price`, `stock`) VALUES
-(1, 'Ноутбук HP', 'Мощный ноутбук для работы и игр.', 59999.99, 10),
-(2, 'Смартфон Samsung Galaxy S21', 'Современный смартфон с отличной камерой.', 79999.99, 20),
-(3, 'Наушники Sony WH-1000XM4', 'Беспроводные наушники с шумоподавлением.', 24999.99, 15),
-(4, 'Монитор Dell UltraSharp 27\"', 'Качественный монитор для работы и игр.', 34999.99, 5),
-(5, 'Клавиатура Logitech G Pro', 'Игровая механическая клавиатура.', 8999.99, 30);
+(1, 'Product A', 'Description of Product A', 19.99, 100),
+(2, 'Product B', 'Description of Product B', 29.99, 50),
+(3, 'Product C', 'Description of Product C', 39.99, 25);
 
 -- --------------------------------------------------------
 
@@ -140,11 +130,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `login`, `password`, `name`) VALUES
-(1, 'admin', 'admin_password', 'Администратор'),
-(2, 'john_doe', 'john_password', 'Джон Доу'),
-(3, 'jane_smith', 'jane_password', 'Джейн Смит'),
-(4, 'alice_wonderland', 'alice_password', 'Алиса'),
-(5, 'bob_brown', 'bob_password', 'Боб Браун');
+(1, 'admin', 'password123', 'Administrator'),
+(2, 'user1', 'password456', 'User One');
 
 --
 -- Индексы сохранённых таблиц
@@ -193,31 +180,31 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `clients`
 --
 ALTER TABLE `clients`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT для таблицы `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT для таблицы `order_items`
 --
 ALTER TABLE `order_items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT для таблицы `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц

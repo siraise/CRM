@@ -1,1 +1,1 @@
-#aituganow,chemlyakovaloshara
+# Дель, Жирнов  
