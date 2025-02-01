@@ -4,10 +4,10 @@ require_once '../DB.php';
 
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $formData = $_POST;
-    $fields = ['full-name', 'email', 'phone', 'birthday'];
+    $fields = ['name', 'descc', 'price', 'stock'];
     $errors = [];
 
-    $_SESSION['clients-errors'] = '';
+    $_SESSION['product-errors'] = '';
 
     foreach($fields as $key => $field){
         if(!isset($_POST[$field]) || empty($_POST[$field])){
@@ -16,8 +16,8 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     }
 
     if(!empty($errors)){
-        $_SESSION['clients-errors'] = json_encode($errors);
-        header('Location: ../../clients.php');
+        $_SESSION['product-errors'] = json_encode($errors);
+        header('Location: ../../products.php');
         exit;
     }
 
@@ -36,33 +36,33 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
     /////////////проверка клиента///////////////
 
-    $phone = $formData['phone'];
+    $name = $formData['name'];
 
-    $clientsID = $DB-> query(
-        "SELECT id FROM clients WHERE phone = '$phone'"
+    $productID = $DB-> query(
+        "SELECT id FROM products WHERE name = '$name'"
     )->fetchAll();
 
     //echo json_encode($clientsID);
 
-    if(!empty($clientsID)){
-        $_SESSION['clients-errors'] = '<h4>Клиент уже существует в БД</h4>';
+    if(!empty($productID)){
+        $_SESSION['product-errors'] = '<h4>Клиент уже существует в БД</h4>';
 
-        header('Location: ../../clients.php');
+        header('Location: ../../products.php');
         exit();
     }
 
-    $sql = "INSERT INTO clients (name, email, phone, birthday)
-            VALUES (:name, :email, :phone, :birthday)";
+    $sql = "INSERT INTO products (name, descc, price, stock)
+            VALUES (:name, :descc, :price, :stock)";
 
     $stmt = $DB -> prepare($sql);
     $stmt->execute([
-        ':name' => $formData['full-name'],
-        ':email' => $formData['email'],
-        ':phone' => $formData['phone'],
-        ':birthday' => $formData['birthday']
+        ':name' => $formData['name'],
+        ':descc' => $formData['descc'],
+        ':price' => $formData['price'],
+        ':stock' => $formData['stock']
     ]);   
     
-    header('Location: ../../clients.php');
+    header('Location: ../../products.php');
     exit();
 
 } else {

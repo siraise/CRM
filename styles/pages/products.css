@@ -94,7 +94,7 @@ select {
 
 
 .clients {
-    background-color: #f9f9f9; 
+    background-color: #fff; 
     padding: 20px; 
 }
 
@@ -300,124 +300,53 @@ button:hover {
     font-size: 0.9em; /* Уменьшенный размер шрифта для дополнительной информации */
 }
 
-@media (max-width:1400px){}
-
-@media (max-width:992px){}
-
-@media (max-width: 985px) {
-    .clients table {
-        width:100%;
-        table-layout: fixed;
-        border: none;
-    }
-    .clients table thead th {
-        font-weight: bold;
-        text-align: left;
-        border: none;
-        padding: 10px 15px;
-        background: #6c6c6d;
-        font-size: 9px;
-        border-left: 1px solid #ddd;
-        border-right: 1px solid #ddd;
-    }
-    .clients table td {
-        text-align: left;
-        border-left: 1px solid #ddd;
-        border-right: 1px solid #ddd;
-        padding: 10px 15px;
-        font-size: 8px;
-        vertical-align: top;
-    }
-    .clients table tbody tr:nth-child(even){
-        background: #f3f3f3;
-    }
-     
-    /* Стили для скролла */
-    ::-webkit-scrollbar {
-        width: 6px;
-    } 
-    ::-webkit-scrollbar-track {
-        box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
-    } 
-    ::-webkit-scrollbar-thumb {
-        box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+@media (min-width: 768px) {
+    .form_filters {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
     }
 
-    .clients_add{
-        display: flex;
-        justify-content: flex-end;
-        font-size:20px;
-        top: 16px;
-    }   
+    .form_filters label {
+        margin-right: 10px;
+    }
+
+    .form_filters input,
+    .form_filters select {
+        width: auto; /* Allow inputs and selects to grow */
+        flex-grow: 1; /* Make them flexible */
+        margin-right: 10px; /* Space between elements */
+    }
 }
 
-@media (max-width:650px){
-    .form_filters{
-        display: flex;
-        flex-direction: column;
+/* Responsive Table */
+@media (max-width: 600px) {
+    table, thead, tbody, th, td, tr {
+        display: block; /* Make each row block for better stacking */
+        width: 100%;
     }
 
-    .clients table {
-        width:100%;
-        table-layout: fixed;
-        border: none;
-    }
-    .clients table thead th {
-        text-align: left;
-        border: none;
-        padding: 10px 15px;
-        background: #6c6c6d;
-        font-size: 9px;
-    }
-    .clients table td {
-        text-align: left;
-        border-left: 1px solid #ddd;
-        border-right: 1px solid #ddd;
-        padding: 10px 15px;
-        font-size: 5px;
-        vertical-align: top;
-    }
-    .clients table tbody tr:nth-child(even){
-        background: #f3f3f3;
-    }
-     
-    /* Стили для скролла */
-    ::-webkit-scrollbar {
-        width: 6px;
-    } 
-    ::-webkit-scrollbar-track {
-        box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
-    } 
-    ::-webkit-scrollbar-thumb {
-        box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    table th {
+        display: none; /* Hide headers on small screens */
     }
 
-    .clients_add{
-        display: flex;
-        justify-content: flex-end;
-        font-size:20px;
-        top: 16px;
-    }   
-
-    label {
-        margin-bottom: 5px;
-        display: flex;
-        justify-content: center;
+    table tr {
+        margin-bottom: 15px; /* Add space between rows */
+        border-bottom: 1px solid #ddd; /* Add bottom border for separation */
     }
 
-    form {
-        gap: 35px; 
+    table td {
+        text-align: right; /* Align text to the right for better readability */
+        position: relative; /* Position relative for pseudo-elements */
+        padding-left: 50%; /* Add padding for labels */
     }
 
-    input[type="text"],
-input[type="email"],
-input[type="tel"],
-input[type="date"] {
-    width: 100%; /* Полная ширина поля ввода */
-    padding: 10px; /* Отступы внутри поля ввода */
-    border-radius: 4px; /* Закругленные углы полей ввода */
-    border: 1px solid #ccc; /* Рамка поля ввода */
-}
-
-    
+    table td::before { /* Add labels before each cell */
+        content: attr(data-label);
+        position: absolute;
+        left: 10px; /* Positioning of labels */
+        width: calc(50% - 20px); /* Width of labels */
+        text-align: left; /* Align labels to the left */
+        font-weight: bold; /* Make labels bold */
+    }
 }
